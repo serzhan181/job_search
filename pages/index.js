@@ -1,19 +1,22 @@
 import { Header, Card, SidebarFilter } from '@/components/index'
-import { Container, Grid } from '@chakra-ui/layout'
+import { Box, Container, Grid } from '@chakra-ui/layout'
 
 const Home = () => (
   <>
     <Header />
     <Container maxW='container.xl'>
-      <Grid gridTemplateColumns='1fr 2fr 4fr'>
-        <div style={{ backgroundColor: 'red' }}>
-          <SidebarFilter />
-        </div>
+      <Grid gap={7} gridTemplateColumns='1fr 2fr 4fr'>
+        <SidebarFilter />
 
-        <div style={{ backgroundColor: 'blue' }}></div>
+        <Box bg='#fcfcfc' rounded='sm'>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </Box>
 
-        <div style={{ backgroundColor: 'purple' }}></div>
-        {/* <Card /> */}
+        <Box bg='gray.300'>{'<Job Content Here>'}</Box>
       </Grid>
     </Container>
   </>

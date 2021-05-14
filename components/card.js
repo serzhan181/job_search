@@ -15,9 +15,8 @@ export const Card = () => {
       maxW='sm'
       px={4}
       py={3}
-      bg='white'
       height='32'
-      shadow='md'
+      shadow='sm'
       rounded='md'
       justifyContent='space-between'
       flexDir='column'

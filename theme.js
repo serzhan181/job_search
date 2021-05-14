@@ -2,7 +2,7 @@ export default {
   colors: {
     transparent: 'transparent',
     black: '#222',
-    white: '#fff',
+    white: '#fcfcfc',
     gray: {
       50: '#f7fafc',
       // ...

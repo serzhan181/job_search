@@ -14,10 +14,18 @@ const fake_options = [
 
 export const SidebarFilter = () => {
   return (
-    <Flex flexDirection='column'>
-      {fake_options.map((option) => (
-        <Options {...option} />
-      ))}
+    <Flex
+      alignItems='center'
+      pt={2}
+      rounded='md'
+      flexDirection='column'
+      bg='#fcfcfc'
+    >
+      <div>
+        {fake_options.map((option) => (
+          <Options {...option} />
+        ))}
+      </div>
     </Flex>
   )
 }
