@@ -1,8 +1,16 @@
-import { Flex, Box, Link, Avatar, Container, Text } from '@chakra-ui/react'
+import {
+  Flex,
+  Box,
+  Link,
+  Avatar,
+  Container,
+  Text,
+  Button,
+} from '@chakra-ui/react'
 
 export const Header = () => (
   <Container maxW='container.xl'>
-    <Flex justifyContent='space-between' mb={10}>
+    <Flex justifyContent='space-between' mt={1} mb={5}>
       <Flex justifyContent='center' alignItems='center'>
         <Text color='GrayText' fontWeight='medium'>
           LOGO
@@ -17,9 +25,14 @@ export const Header = () => (
         </Link>
       </Flex>
       <Box>
-        <Link color='telegram.600' fontWeight='bold'>
+        <Button
+          variant='ghost'
+          size='sm'
+          colorScheme='telegram'
+          fontWeight='bold'
+        >
           Find job
-        </Link>
+        </Button>
       </Box>
       <Flex>
         <Avatar width={30} height={30} />
