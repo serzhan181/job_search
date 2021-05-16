@@ -7,7 +7,11 @@ export const Options = ({ title, options }) => {
         {title}
       </Heading>
       {Array.isArray(options) ? (
-        options.map((option) => <Checkbox size='sm'>{option}</Checkbox>)
+        options.map((option) => (
+          <Checkbox key={option} size='sm'>
+            {option}
+          </Checkbox>
+        ))
       ) : (
         <Checkbox>{options}</Checkbox> // in theres single option
       )}

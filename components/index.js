@@ -1,3 +1,3 @@
 export { Header } from './header'
-export { Card } from './card'
+export { Cards } from './cards'
 export { SidebarFilter } from './sidebar-filter'

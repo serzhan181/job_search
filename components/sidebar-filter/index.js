@@ -23,7 +23,7 @@ export const SidebarFilter = () => {
     >
       <div>
         {fake_options.map((option) => (
-          <Options {...option} />
+          <Options {...option} key={option.title} />
         ))}
       </div>
     </Flex>
