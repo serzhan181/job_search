@@ -12,8 +12,9 @@ export const Header = () => (
   <Box
     borderBottom='1px'
     borderColor='gray.200'
-    mt={1}
-    mb={9}
+    position='absolute'
+    top={0}
+    height={9}
     width='full'
     bg='#fcfcfc'
   >

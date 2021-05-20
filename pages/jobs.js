@@ -1,11 +1,11 @@
-import { Header, Cards, SidebarFilter } from '@/components/index'
+import { Cards, SidebarFilter } from '@/components/index'
 import { Box, Container, Grid } from '@chakra-ui/layout'
+import { Layout } from '@/layout/basic'
 
 export default function Jobs() {
   return (
-    <>
-      <Header />
-      <Container maxW='container.xl'>
+    <Layout>
+      <Container mt={9} maxW='container.xl'>
         <Grid gap={7} gridTemplateColumns={{ lg: '1fr 2fr 4fr' }}>
           <SidebarFilter />
 
@@ -16,6 +16,6 @@ export default function Jobs() {
           <Box bg='gray.300'>{'<Job Content Here>'}</Box>
         </Grid>
       </Container>
-    </>
+    </Layout>
   )
 }
