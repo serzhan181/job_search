@@ -6,6 +6,7 @@
         "@/store/*": ["store/*"],
         "@/context/*": ["context/*"],
         "@/layout/*": ["layout/*"],
+        "@/hooks/*": ["hooks/*"],
       }
     }
   }

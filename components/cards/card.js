@@ -8,7 +8,14 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 
-export const Card = () => {
+export const Card = ({
+  title,
+  description = 'some description for now',
+  tags = [],
+  ...rest
+}) => {
+  const shrinkedTags = tags.length > 3 ? tags.slice(0, 3) : tags
+
   return (
     <Flex
       w='full'
@@ -20,6 +27,8 @@ export const Card = () => {
       rounded='md'
       justifyContent='space-between'
       flexDir='column'
+      cursor='pointer'
+      {...rest}
     >
       <Box>
         <chakra.h1
@@ -28,46 +37,51 @@ export const Card = () => {
           mt={2}
           color={useColorModeValue('gray.800', 'white')}
         >
-          Senior Next.js developer
+          {title}
         </chakra.h1>
         <chakra.p
           fontSize='sm'
           mt={2}
           color={useColorModeValue('gray.600', 'gray.300')}
         >
-          Next.js developer for making e-commerce websites etc.
+          {description}
         </chakra.p>
       </Box>
 
-      <Box>
-        <Flex
-          alignItems='center'
-          mt={2}
-          color={useColorModeValue('gray.700', 'gray.200')}
-        >
-          <HStack>
-            <Tag
-              size='sm'
-              borderRadius='full'
-              variant='solid'
-              colorScheme='green'
-              cursor='pointer'
-            >
-              <TagLabel>Full Time</TagLabel>
-            </Tag>
+      {shrinkedTags.length && (
+        <Box>
+          <Flex
+            alignItems='center'
+            mt={2}
+            color={useColorModeValue('gray.700', 'gray.200')}
+          >
+            <HStack>
+              {shrinkedTags.map((tag) => (
+                <Tag
+                  size='sm'
+                  borderRadius='full'
+                  variant='solid'
+                  colorScheme='purple'
+                  cursor='pointer'
+                >
+                  <TagLabel>{tag.name}</TagLabel>
+                </Tag>
+              ))}
 
-            <Tag
-              size='sm'
-              borderRadius='full'
-              variant='solid'
-              colorScheme='purple'
-              cursor='pointer'
-            >
-              <TagLabel>Remote</TagLabel>
-            </Tag>
-          </HStack>
-        </Flex>
-      </Box>
+              {tags.length > 3 && (
+                <Tag
+                  size='sm'
+                  borderRadius='full'
+                  variant='subtle'
+                  colorScheme='gray'
+                >
+                  <TagLabel>and {tags.length - 3} more</TagLabel>
+                </Tag>
+              )}
+            </HStack>
+          </Flex>
+        </Box>
+      )}
     </Flex>
   )
 }
