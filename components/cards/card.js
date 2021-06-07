@@ -1,12 +1,8 @@
 import { Flex, Box, HStack, chakra, useColorModeValue } from '@chakra-ui/react'
 import { Tags } from '@/components/common/tags'
+import { dateago } from '@/helpers/dateago'
 
-export const Card = ({
-  title,
-  description = 'some description for now',
-  tags = [],
-  ...rest
-}) => {
+export const Card = ({ title, tags = [], createdAt, ...rest }) => {
   return (
     <Flex
       w='full'
@@ -35,7 +31,7 @@ export const Card = ({
           mt={2}
           color={useColorModeValue('gray.600', 'gray.300')}
         >
-          {description}
+          {dateago(createdAt)}
         </chakra.p>
       </Box>
 

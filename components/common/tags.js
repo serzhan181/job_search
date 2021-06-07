@@ -5,7 +5,13 @@ export const Tags = ({ tags, isExpanded = false }) => {
   return (
     <HStack>
       {(isExpanded ? tags : shrinkedTags).map((tag) => (
-        <Tag size='sm' borderRadius='full' variant='solid' colorScheme='purple'>
+        <Tag
+          key={tag.id}
+          size='sm'
+          borderRadius='full'
+          variant='solid'
+          colorScheme='purple'
+        >
           <TagLabel>{tag.name}</TagLabel>
         </Tag>
       ))}

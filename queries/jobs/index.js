@@ -20,6 +20,8 @@ export const GET_ALL_JOBS = gql`
       tags {
         name
       }
+
+      createdAt
     }
   }
 `
@@ -37,6 +39,8 @@ export const GET_REMOTE_JOBS = gql`
         tags {
           name
         }
+
+        createdAt
       }
     }
   }
@@ -44,12 +48,25 @@ export const GET_REMOTE_JOBS = gql`
 
 export const get_job_data = ({ jobSlug, companySlug }) => {
   return gql`
-    query {
-      job(input: { jobSlug: "${jobSlug}", companySlug: "${companySlug}" }) {
-        title
-        description
+  query {
+    job(input: { jobSlug: "${jobSlug}", companySlug: "${companySlug}" }) {
+      title,
+      description,
+      company {
+        name
+        websiteUrl
       }
+      commitment {
+        title
+      }
+      tags {
+        id,
+        name
+      }
+      applyUrl,
+      createdAt
     }
+  }
   `
 }
 

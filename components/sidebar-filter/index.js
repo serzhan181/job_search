@@ -7,10 +7,6 @@ const options = [
     title: 'Type of employment',
     fields: ['Remote Jobs'],
   },
-  {
-    title: 'Salary range',
-    fields: ['100-500', '500-1000', '1000-2000', '2000-5000', '5000+'],
-  },
 ]
 
 export const SidebarFilter = () => {

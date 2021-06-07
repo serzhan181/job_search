@@ -15,7 +15,7 @@ export const JobCards = observer(() => {
               })
             }
             key={j.id}
-            {...{ title: j.title, tags: j.tags }}
+            {...j}
           />
         )
       })}
