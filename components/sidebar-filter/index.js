@@ -1,11 +1,11 @@
-import { Flex, Input, Button } from '@chakra-ui/react'
-import { Options } from './options'
-import { debounce } from '@/helpers/debounce'
+import { Flex } from '@chakra-ui/react'
+import { Option } from './option'
+import router from 'next/router'
 
 const options = [
   {
     title: 'Type of employment',
-    fields: ['Full Time Jobs', 'Part Time Jobs', 'Remote Jobs'],
+    fields: ['Remote Jobs'],
   },
   {
     title: 'Salary range',
@@ -14,8 +14,12 @@ const options = [
 ]
 
 export const SidebarFilter = () => {
-  const handleFindJob = (e) => {
-    console.log(e.target.value)
+  const handleFieldChange = (optionName, fieldName, checked) => {
+    if (optionName === 'Type of employment' && fieldName === 'Remote Jobs') {
+      if (checked) return router.push({ query: { type: 'remote' } })
+      if (!checked)
+        return router.replace(router.pathname, undefined, { shallow: true })
+    }
   }
 
   return (
@@ -27,27 +31,12 @@ export const SidebarFilter = () => {
       bg='#fcfcfc'
     >
       <div>
-        <Flex alignItems='center' mb={2}>
-          <Input
-            placeholder='frontend developer...'
-            size='sm'
-            color='gray.700'
-            borderRadius='md'
-            onChange={debounce(handleFindJob, 300)}
-          />
-          <Button
-            variant='ghost'
-            size='xs'
-            colorScheme='telegram'
-            fontWeight='bold'
-            ml='2'
-          >
-            Find job
-          </Button>
-        </Flex>
-
         {options.map((option) => (
-          <Options {...option} key={option.title} />
+          <Option
+            {...option}
+            onFieldChange={handleFieldChange}
+            key={option.title}
+          />
         ))}
       </div>
     </Flex>

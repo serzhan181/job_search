@@ -10,6 +10,8 @@ import {
 } from '@chakra-ui/react'
 import Markdown from 'react-markdown'
 import { Tags } from '@/components/common/tags'
+import { observer } from 'mobx-react-lite'
+import { jobs } from '@/store/jobs'
 // import { useQuery } from '@apollo/client'
 // import { get_job_data } from '@/queries/jobs/index'
 import { dateago } from '@/helpers/dateago'
@@ -52,10 +54,8 @@ const MOCK_JOB = {
   },
 }
 
-export const JobContent = ({
-  selectedJob: { jobSlug, companySlug },
-  setSelectedJob,
-}) => {
+export const JobContent = observer(() => {
+  // const { jobSlug, companySlug } = jobs?.selectedJob
   const { data, error, loading } = {
     data: MOCK_JOB.data,
     loading: false,
@@ -120,7 +120,7 @@ export const JobContent = ({
               right={1}
               fontSize='2xl'
               colorScheme='gray'
-              onClick={() => setSelectedJob(null)}
+              onClick={() => jobs.setSelectedJob(null)}
             >
               <i className='icon ion-ios-close-circle'></i>{' '}
             </Button>
@@ -134,4 +134,4 @@ export const JobContent = ({
       </Box>
     </>
   )
-}
+})

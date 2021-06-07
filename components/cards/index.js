@@ -1,21 +1,24 @@
+import { observer } from 'mobx-react-lite'
+import { jobs } from '@/store/jobs'
 import { Card } from './card'
 
-export const Cards = ({ jobs, setSelectedJob }) => {
+export const JobCards = observer(() => {
   return (
-    jobs && (
-      <>
-        {jobs.map((j) => {
-          return (
-            <Card
-              onClick={() =>
-                setSelectedJob({ jobSlug: j.slug, companySlug: j.company.slug })
-              }
-              key={j.id}
-              {...{ title: j.title, tags: j.tags }}
-            />
-          )
-        })}
-      </>
-    )
+    <>
+      {jobs.listedJobs.map((j) => {
+        return (
+          <Card
+            onClick={() =>
+              jobs.setSelectedJob({
+                jobSlug: j.slug,
+                companySlug: j.company.slug,
+              })
+            }
+            key={j.id}
+            {...{ title: j.title, tags: j.tags }}
+          />
+        )
+      })}
+    </>
   )
-}
+})

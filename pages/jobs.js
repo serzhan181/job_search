@@ -1,10 +1,14 @@
-import { Cards, SidebarFilter, JobContent } from '@/components/index'
+import { JobCards, SidebarFilter, JobContent } from '@/components/index'
 import { Box, Container, Grid } from '@chakra-ui/layout'
 import { Spinner } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { JobsLayout } from '@/layout/jobs_layout'
-// import { useQuery } from '@apollo/client'
-// import { GET_ALL_JOBS } from '@/queries/jobs/index'
+import { jobs } from '@/store/jobs'
+import { observer } from 'mobx-react-lite'
+import { useRouter } from 'next/router'
+import { useLazyQuery } from '@apollo/client'
+import { GET_REMOTE_JOBS } from '@/queries/jobs/index'
+import { client } from 'apollo-client'
 
 const MOCK_JOBS = {
   data: {
@@ -105,14 +109,14 @@ const MOCK_JOBS = {
   },
 }
 
-export default function Jobs() {
-  const [selectedJob, setSelectedJob] = useState(null)
-
+const Jobs = observer(() => {
   const { data, loading, error } = {
     data: MOCK_JOBS.data,
     loading: false,
     error: false,
   } // useQuery(GET_ALL_JOBS)
+
+  jobs.setListedJobs(data.jobs)
 
   if (error) {
     console.log('the error appeared ' + error)
@@ -134,27 +138,37 @@ export default function Jobs() {
     )
   }
 
+  const router = useRouter()
+  useEffect(() => {
+    ;(async () => {
+      if (router.query?.type) {
+        const { type } = router.query
+        if (type === 'remote') {
+          const { data } = await client.query({ query: GET_REMOTE_JOBS })
+          jobs.setListedJobs(data.remotes[0].jobs)
+        }
+      }
+    })()
+  }, [router.query])
+
   return (
     <JobsLayout>
       <Container mt={9} maxW='container.xl'>
         <Grid
           gap={7}
           gridTemplateColumns={{
-            lg: `1fr 2fr ${selectedJob ? '4fr' : ''}`,
+            lg: `1fr 2fr ${jobs.selectedJob ? '4fr' : ''}`,
           }}
         >
           <SidebarFilter />
           <Box bg='#fcfcfc' rounded='sm'>
-            <Cards {...{ jobs: data.jobs, setSelectedJob }} />
+            <JobCards />
           </Box>{' '}
-          {selectedJob && (
-            <JobContent
-              selectedJob={selectedJob}
-              setSelectedJob={setSelectedJob}
-            />
-          )}
+          {jobs.selectedJob && <JobContent />}
         </Grid>
       </Container>
     </JobsLayout>
   )
-}
+})
+
+export default Jobs

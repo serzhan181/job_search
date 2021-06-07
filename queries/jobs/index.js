@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 /**
  * NAME CONVENTION:
  *
- * query, that is capitalized doesn't need arguments being parsed.
+ * query, that is capitalized doesn't need arguments being parsed
  *
  * query, that isn't capitalized are function, does require arguments.
  */
@@ -19,6 +19,24 @@ export const GET_ALL_JOBS = gql`
       }
       tags {
         name
+      }
+    }
+  }
+`
+
+export const GET_REMOTE_JOBS = gql`
+  query {
+    remotes {
+      jobs {
+        id
+        title
+        slug
+        company {
+          slug
+        }
+        tags {
+          name
+        }
       }
     }
   }
