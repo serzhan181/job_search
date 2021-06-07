@@ -1,12 +1,5 @@
-import {
-  Flex,
-  Box,
-  HStack,
-  Tag,
-  TagLabel,
-  chakra,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Flex, Box, HStack, chakra, useColorModeValue } from '@chakra-ui/react'
+import { Tags } from '@/components/common/tags'
 
 export const Card = ({
   title,
@@ -14,8 +7,6 @@ export const Card = ({
   tags = [],
   ...rest
 }) => {
-  const shrinkedTags = tags.length > 3 ? tags.slice(0, 3) : tags
-
   return (
     <Flex
       w='full'
@@ -48,37 +39,14 @@ export const Card = ({
         </chakra.p>
       </Box>
 
-      {shrinkedTags.length && (
+      {tags.length && (
         <Box>
           <Flex
             alignItems='center'
             mt={2}
             color={useColorModeValue('gray.700', 'gray.200')}
           >
-            <HStack>
-              {shrinkedTags.map((tag) => (
-                <Tag
-                  size='sm'
-                  borderRadius='full'
-                  variant='solid'
-                  colorScheme='purple'
-                  cursor='pointer'
-                >
-                  <TagLabel>{tag.name}</TagLabel>
-                </Tag>
-              ))}
-
-              {tags.length > 3 && (
-                <Tag
-                  size='sm'
-                  borderRadius='full'
-                  variant='subtle'
-                  colorScheme='gray'
-                >
-                  <TagLabel>and {tags.length - 3} more</TagLabel>
-                </Tag>
-              )}
-            </HStack>
+            <Tags tags={tags} />
           </Flex>
         </Box>
       )}

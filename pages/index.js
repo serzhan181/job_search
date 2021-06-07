@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { Box, Flex, Heading, Text, Link } from '@chakra-ui/layout'
+import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
+import Link from 'next/link'
 import { css } from '@emotion/react'
 import { useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
@@ -111,8 +112,8 @@ const Home = observer(() => {
             </motion.p>
           </Text>
         </Box>
-        <Button mt='7' as='a' href='/jobs'>
-          Discover job openings
+        <Button mt='7'>
+          <Link href='/jobs'>Discover job openings</Link>
         </Button>
       </Flex>
     </>

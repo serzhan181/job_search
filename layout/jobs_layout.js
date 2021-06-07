@@ -1,7 +1,7 @@
 import { Header } from '@/components/header'
 import { Box } from '@chakra-ui/layout'
 
-export const Layout = ({ children }) => {
+export const JobsLayout = ({ children }) => {
   return (
     <>
       <Header />

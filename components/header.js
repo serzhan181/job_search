@@ -33,16 +33,7 @@ export const Header = () => (
             Milao
           </Link>
         </Flex>
-        <Box>
-          <Button
-            variant='ghost'
-            size='sm'
-            colorScheme='telegram'
-            fontWeight='bold'
-          >
-            Find job
-          </Button>
-        </Box>
+
         <Flex>
           <Avatar width={30} height={30} />
         </Flex>

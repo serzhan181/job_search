@@ -19,36 +19,3 @@ export const Cards = ({ jobs, setSelectedJob }) => {
     )
   )
 }
-
-/*
-  {
-        "id": "cjz1ipl9x009a0758hg68h7vy",
-        "title": "Senior Fullstack Engineer - Platform",
-        "tags": [
-          {
-            "name": "TypeScript"
-          },
-          {
-            "name": "React"
-          },
-          {
-            "name": "Full Stack"
-          },
-          {
-            "name": "Go"
-          },
-          {
-            "name": "AWS"
-          },
-          {
-            "name": "Docker"
-          },
-          {
-            "name": "Kafka"
-          },
-          {
-            "name": "Senior"
-          }
-        ]
-      }
-*/
