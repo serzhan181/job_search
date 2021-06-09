@@ -19,6 +19,8 @@ class MyDocument extends Document {
             href='https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css'
             rel='stylesheet'
           />
+
+          <title>Workision</title>
         </Head>
         <body>
           <Main />

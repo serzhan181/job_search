@@ -1,6 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { Global, css } from '@emotion/react'
 import { ApolloProvider } from '@apollo/client'
+import { AuthProvider } from '@/context/Auth'
 import { client } from '../apollo-client'
 
 const App = ({ Component, pageProps }) => {
@@ -14,7 +15,9 @@ const App = ({ Component, pageProps }) => {
         `}
       />
       <ApolloProvider client={client}>
-        <Component {...pageProps} />
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
       </ApolloProvider>
     </ChakraProvider>
   )

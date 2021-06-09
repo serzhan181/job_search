@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
 import { GET_ALL_JOBS, GET_REMOTE_JOBS } from '@/queries/jobs/index'
 import { client } from 'apollo-client'
+import Head from 'next/head'
 
 const Jobs = observer(() => {
   const { data, loading, error } = useQuery(GET_ALL_JOBS)
@@ -52,6 +53,9 @@ const Jobs = observer(() => {
 
   return (
     <JobsLayout>
+      <Head>
+        <title>Explore Jobs</title>
+      </Head>
       <Container mt={9} maxW='container.xl'>
         <Grid
           gap={7}
