@@ -10,10 +10,14 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
-import { useAuth } from '@/hooks/useAuth'
+import { useAuth, signOut } from '@/hooks/useAuth'
 
 export const Header = () => {
-  const { authenticated } = useAuth()
+  const { user, signOut } = useAuth()
+
+  const handleSignOut = async () => {
+    await signOut()
+  }
 
   return (
     <Box
@@ -42,8 +46,16 @@ export const Header = () => {
           </Flex>
 
           <Flex>
-            {authenticated ? (
-              <Avatar width={30} height={30} />
+            {user ? (
+              <HStack>
+                <Text size='xs' colorScheme='gray'>
+                  {user.email}
+                </Text>
+                <Avatar width={30} height={30} />
+                <Button size='xs' colorScheme='red' onClick={handleSignOut}>
+                  Sign out
+                </Button>
+              </HStack>
             ) : (
               <HStack>
                 <NextLink href='/signup'>
